@@ -39,11 +39,27 @@
 
 <script>
     const divContainer = document.querySelector(".container");
+    let isMouseDown = false;
+    divContainer.addEventListener("mousedown", function() {
+        isMouseDown = true;
+    });
+    document.addEventListener("mouseup", function() {
+        isMouseDown = false;
+    })
     for (let i = 0; i < 256; i++) {
         const squareDiv = document.createElement("div");
         squareDiv.classList.add("square");
+        squareDiv.addEventListener("mouseenter", function() {
+            if(isMouseDown) {
+                squareDiv.style.backgroundColor = "blue";
+            };
+        });
+        squareDiv.addEventListener("click", function() {
+            squareDiv.style.backgroundColor = "blue";
+        })
         divContainer.appendChild(squareDiv);
     }
+
 
 
 </script>
