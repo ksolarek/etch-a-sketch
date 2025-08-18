@@ -84,8 +84,8 @@
                 <div class="settings">
                     <h2>Matrix resolution</h2>
                     <p>Current resolution:</p>
-                    <p id="resolution">variable</p>
-                    <button id="resolutionButton">Change</button>
+                    <p id="resolution">16 x 16</p>
+                    <button id="resolution-button">Change</button>
                 </div>
                 <div class="settings">
                     <h2>Pen color</h2>
@@ -117,21 +117,41 @@
     document.addEventListener("mouseup", function() {
         isMouseDown = false;
     })
-    for (let i = 0; i < 256; i++) {
-        const squareDiv = document.createElement("div");
-        squareDiv.classList.add("square");
-        squareDiv.addEventListener("mouseenter", function() {
+
+    function attachPaintEvents(element) {
+        element.addEventListener("mouseenter", function() {
             if(isMouseDown) {
-                squareDiv.style.backgroundColor = "blue";
+                element.style.backgroundColor = "blue";
             };
         });
-        squareDiv.addEventListener("click", function() {
-            squareDiv.style.backgroundColor = "blue";
-        })
+        element.addEventListener("click", function() {
+            element.style.backgroundColor = "blue";
+        });
+        };
+
+    for (let i = 0; i < 256; i++) {
+        let squareDiv = document.createElement("div");
+        squareDiv.classList.add("square");
+        attachPaintEvents(squareDiv);
         divContainer.appendChild(squareDiv);
     }
 
+    const paraResolution = document.querySelector("#resolution");
 
+    const resolutionButton = document.querySelector("#resolution-button");
+    resolutionButton.addEventListener("click", function() {
+        let pxPerSide = prompt("Set number of pixels per side", "");
+        divContainer.innerHTML = ``;
+        for (let i = 0; i < (pxPerSide * pxPerSide); i++) {
+        let squareDiv = document.createElement("div");
+        squareDiv.classList.add("square");
+        squareDiv.style.flexBasis = `calc(100% / ${pxPerSide})`;
+        squareDiv.style.height = `calc(100% / ${pxPerSide})`;
+        attachPaintEvents(squareDiv);
+        divContainer.appendChild(squareDiv);
+        };
+        paraResolution.textContent = `${pxPerSide} x ${pxPerSide}`;
+    });
 
 </script>
 
