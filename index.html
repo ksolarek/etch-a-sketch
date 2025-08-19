@@ -106,6 +106,13 @@
             box-sizing: border-box;
         }
 
+        #black {
+            width: 30px;
+            height: 30px;
+            background: black;
+            border-radius: 15px;
+        }
+
         #red {
             width: 30px;
             height: 30px;
@@ -187,6 +194,7 @@
                 <div class="settings">
                     <h4>Pen color</h2>
                     <div id="colors">
+                        <div id="black"></div>
                         <div id="red"></div>
                         <div id="green"></div>
                         <div id="blue"></div>
@@ -215,9 +223,12 @@
 <script>
     const divContainer = document.querySelector(".container");
     let isMouseDown = false;
+    let currentColor = "black";
+
     divContainer.addEventListener("mousedown", function() {
         isMouseDown = true;
     });
+
     document.addEventListener("mouseup", function() {
         isMouseDown = false;
     })
@@ -225,11 +236,11 @@
     function attachPaintEvents(element) {
         element.addEventListener("mouseenter", function() {
             if(isMouseDown) {
-                element.style.backgroundColor = "blue";
+                element.style.backgroundColor = currentColor;
             };
         });
         element.addEventListener("click", function() {
-            element.style.backgroundColor = "blue";
+            element.style.backgroundColor = currentColor;
         });
         };
 
@@ -239,6 +250,7 @@
         attachPaintEvents(squareDiv);
         divContainer.appendChild(squareDiv);
     }
+
 
     const paraResolution = document.querySelector("#resolution");
 
@@ -255,6 +267,26 @@
         divContainer.appendChild(squareDiv);
         };
         paraResolution.textContent = `${pxPerSide} x ${pxPerSide}`;
+    });
+
+    const colorsDiv = document.querySelector("#colors");
+
+    const blackDiv = document.querySelector("#black");
+    blackDiv.addEventListener("click", function() {
+        currentColor = "black";
+        for (const child of colorsDiv.children) {
+            child.style.border = "none";
+        };
+        blackDiv.style.border = "solid 3px #e55d2b";
+    });
+
+    const redDiv = document.querySelector("#red");
+    redDiv.addEventListener("click", function() {
+        currentColor = "red";
+        for (const child of colorsDiv.children) {
+            child.style.border = "none";
+        };
+        redDiv.style.border = "solid 3px #000";
     });
 
 </script>
