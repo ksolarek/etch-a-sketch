@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
     <title>Etch-a-sketch</title>
 
     <style>
@@ -11,13 +14,23 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+        }
+
+        h1 {
+            color: #e55d2b;
+            font-weight: 900;
+        }
+
+        h2 {
+            color: #e55d2b;
         }
 
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgb(112, 112, 112);
+            background-color: #efe2de;
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -25,22 +38,33 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgb(223, 223, 223);
-            padding: 50px 50px;
+            background-color: rgb(255, 255, 255);
+            padding: 20px 20px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .columns {
             display: flex;
-            padding-top: 50px;
         }
 
         .left-column {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding-right: 50px;
+            padding: 20px 20px;
+            background-color: #efe2de;
+            border-radius: 10px;
+        }
+
+        .right-column {
+            padding: 20px 20px;
+        }
+
+        .header {
+            display: flex;
+            gap: 20px;
+            padding-bottom: 50px;
         }
 
         .container {
@@ -50,20 +74,30 @@
             flex-wrap: wrap;
             width: 600px;
             height: 600px;
-            background-color: #ffffff
+            background-color: #ffffff;
+            border: solid 1px #efe2de;
+        }
+
+        h3 {
+            padding-bottom: 40px;
+            font-size: 18pt;
         }
 
         .settings {
-            padding-bottom: 50px;
+            padding-bottom: 40px;
+        }
+
+        h4 {
+            padding-bottom: 10px;
         }
 
         #colors {
             display: flex;
             justify-content: flex-start;
+            gap: 10px;
         }
 
         .square {
-            border: 1px solid rgb(223, 223, 223);
             flex-basis: calc(100% / 16);
             height: calc(100% / 16);
             box-sizing: border-box;
@@ -73,30 +107,60 @@
             width: 30px;
             height: 30px;
             background: red;
+            border-radius: 15px;
         }
 
         #green {
             width: 30px;
             height: 30px;
             background: green;
+            border-radius: 15px;
         }
 
         #blue {
             width: 30px;
             height: 30px;
             background: blue;
+            border-radius: 15px;
         }
 
         #yellow {
             width: 30px;
             height: 30px;
             background: yellow;
+            border-radius: 15px;
         }
 
         #magic {
             width: 30px;
             height: 30px;
             background: linear-gradient(135deg, red, yellow, green, blue);
+            border-radius: 15px;
+        }
+
+        button {
+            background-color: #efe2de;
+            padding: 10px;
+            width: 100px;
+            height: 30px;
+            border-radius: 15px;
+            border: solid 2px #e55d2b;
+            font-size: 16px;
+            font-weight: 700;
+            color: #e55d2b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition-duration: 0.4s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #efbdaa;
+        }
+
+        button:active {
+            background-color: #fff;
         }
 
     </style>
@@ -108,17 +172,17 @@
 <body>
     
     <div class="main">
-        <h1>ETCH-A-SKETCH</h1>
         <div class="columns">
             <div class="left-column">
+                <h3>Settings</h3>
                 <div class="settings">
-                    <h2>Matrix resolution</h2>
+                    <h4>Matrix resolution</h2>
                     <p>Current resolution:</p>
                     <p id="resolution">16 x 16</p>
                     <button id="resolution-button">Change</button>
                 </div>
                 <div class="settings">
-                    <h2>Pen color</h2>
+                    <h4>Pen color</h2>
                     <div id="colors">
                         <div id="red"></div>
                         <div id="green"></div>
@@ -129,6 +193,13 @@
                 </div>
             </div>
             <div class="right-column">
+                <div class="header">
+                    <img src="./logo.PNG" alt="The Etch-a-Sketch logo" height="70px" width="70px">
+                    <div class="title">
+                        <h1>ETCH-A-SKETCH</h1>
+                        <h2>An oldschool online sketchpad</h2>
+                    </div>
+                </div>
                 <div class="container"></div>
         </div>
         </div>
