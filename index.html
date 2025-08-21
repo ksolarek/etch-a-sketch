@@ -224,6 +224,7 @@
     const divContainer = document.querySelector(".container");
     let isMouseDown = false;
     let currentColor = "black";
+    let isMagic = false;
 
     divContainer.addEventListener("mousedown", function() {
         isMouseDown = true;
@@ -233,16 +234,23 @@
         isMouseDown = false;
     })
 
+    function paintSquare(square) {
+        if (!isMagic) {
+        square.style.backgroundColor = currentColor;
+            } else {
+        square.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            };
+        };
+
     function attachPaintEvents(element) {
         element.addEventListener("mouseenter", function() {
-            if(isMouseDown) {
-                element.style.backgroundColor = currentColor;
-            };
-        });
+            if (isMouseDown) paintSquare(element);
+            });
         element.addEventListener("click", function() {
-            element.style.backgroundColor = currentColor;
+            paintSquare(element);
         });
-        };
+    };
+    
 
     for (let i = 0; i < 256; i++) {
         let squareDiv = document.createElement("div");
@@ -254,6 +262,8 @@
 
     const paraResolution = document.querySelector("#resolution");
 
+    
+   
     const resolutionButton = document.querySelector("#resolution-button");
     resolutionButton.addEventListener("click", function() {
         let pxPerSide = prompt("Set number of pixels per side", "");
@@ -273,6 +283,7 @@
 
     const blackDiv = document.querySelector("#black");
     blackDiv.addEventListener("click", function() {
+        isMagic = false;
         currentColor = "black";
         for (const child of colorsDiv.children) {
             child.style.border = "none";
@@ -282,11 +293,51 @@
 
     const redDiv = document.querySelector("#red");
     redDiv.addEventListener("click", function() {
+        isMagic = false;
         currentColor = "red";
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
         redDiv.style.border = "solid 3px #000";
+    });
+
+    const greenDiv = document.querySelector("#green");
+    greenDiv.addEventListener("click", function() {
+        isMagic = false;
+        currentColor = "green";
+        for (const child of colorsDiv.children) {
+            child.style.border = "none";
+        };
+        greenDiv.style.border = "solid 3px #000";
+    });
+
+    const blueDiv = document.querySelector("#blue");
+    blueDiv.addEventListener("click", function() {
+        isMagic = false;
+        currentColor = "blue";
+        for (const child of colorsDiv.children) {
+            child.style.border = "none";
+        };
+        blueDiv.style.border = "solid 3px #000";
+    });
+
+    const yellowDiv = document.querySelector("#yellow");
+    yellowDiv.addEventListener("click", function() {
+        isMagic = false;
+        currentColor = "yellow";
+        for (const child of colorsDiv.children) {
+            child.style.border = "none";
+        };
+        yellowDiv.style.border = "solid 3px #000";
+    });
+
+    const magicDiv = document.querySelector("#magic");
+    magicDiv.addEventListener("click", function() {
+        for (const child of colorsDiv.children) {
+            child.style.border = "none";
+        };
+        magicDiv.style.border = "solid 3px #000";
+        isMagic = true;
     });
 
 </script>
