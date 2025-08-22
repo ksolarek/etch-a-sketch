@@ -36,8 +36,6 @@
         }
         .main {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             background-color: rgb(255, 255, 255);
             padding: 20px 20px;
             border-radius: 20px;
@@ -144,14 +142,23 @@
         #magic {
             width: 30px;
             height: 30px;
-            background: linear-gradient(135deg, red, yellow, green, blue);
+            background: linear-gradient(135deg, purple, red, yellow, green, blue);
             border-radius: 15px;
+        }
+
+        #circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         button {
             background-color: #efe2de;
             padding: 10px;
-            width: 100px;
+            min-width: 50px;
             height: 30px;
             border-radius: 15px;
             border: solid 2px #e55d2b;
@@ -201,6 +208,14 @@
                         <div id="yellow"></div>
                         <div id="magic"></div>
                     </div> 
+                </div>
+                <div class="settings">
+                    <h4>Other tools</h4>
+                    <div id="circle">
+                    <img id="eraser" src="https://cdn-icons-png.flaticon.com/512/1827/1827954.png" alt="An eraser icon" height="17px" width="17px">
+                    </div>
+                    <button id="clear-button">Clear matrix</button>
+                  </div>
                 </div>
             </div>
             <div class="right-column">
@@ -288,7 +303,8 @@
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
-        blackDiv.style.border = "solid 3px #e55d2b";
+        blackDiv.style.border = "solid 2px #e55d2b";
+        circle.style.border = "none";
     });
 
     const redDiv = document.querySelector("#red");
@@ -298,7 +314,8 @@
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
-        redDiv.style.border = "solid 3px #000";
+        redDiv.style.border = "solid 2px #000";
+        circle.style.border = "none";
     });
 
     const greenDiv = document.querySelector("#green");
@@ -308,7 +325,8 @@
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
-        greenDiv.style.border = "solid 3px #000";
+        greenDiv.style.border = "solid 2px #000";
+        circle.style.border = "none";
     });
 
     const blueDiv = document.querySelector("#blue");
@@ -318,7 +336,8 @@
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
-        blueDiv.style.border = "solid 3px #000";
+        blueDiv.style.border = "solid 2px #000";
+        circle.style.border = "none";
     });
 
     const yellowDiv = document.querySelector("#yellow");
@@ -328,7 +347,8 @@
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
-        yellowDiv.style.border = "solid 3px #000";
+        yellowDiv.style.border = "solid 2px #000";
+        circle.style.border = "none";
     });
 
     const magicDiv = document.querySelector("#magic");
@@ -336,8 +356,31 @@
         for (const child of colorsDiv.children) {
             child.style.border = "none";
         };
-        magicDiv.style.border = "solid 3px #000";
+        magicDiv.style.border = "solid 2px #000";
+        circle.style.border = "none";
         isMagic = true;
+    });
+
+    const circle = document.querySelector("#circle");
+    const eraser = document.querySelector("#eraser");
+    circle.addEventListener("click", function() { 
+        isMagic = false; 
+        currentColor = "white"; 
+        for (const child of colorsDiv.children) {
+            child.style.border = "none"; 
+        }; 
+        circle.style.border = "solid 2px #000";; 
+    }); 
+
+    const clearButton = document.querySelector("#clear-button");
+    clearButton.addEventListener("click", function() {
+        for (const child of divContainer.children) {
+            child.style.backgroundColor = "white";
+        };
+        for (const child of colorsDiv.children) {
+            child.style.border = "none"; 
+        };
+        circle.style.border = "none"; 
     });
 
 </script>
